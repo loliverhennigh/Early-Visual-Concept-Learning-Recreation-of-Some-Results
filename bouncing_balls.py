@@ -155,21 +155,15 @@ def matricize(X,V,res,r=None):
     T, n= shape(X)[0:2]
     if r==None: r=array([4.0]*n)
 
-    A=zeros((T,res,res, 3), dtype='float')
+    A=zeros((T,res,res, 1), dtype='float')
     
     [I, J]=meshgrid(ar(0,1,1./res)*SIZE, ar(0,1,1./res)*SIZE)
 
     for t in range(T):
         for i in range(n):
-            A[t, :, :, 1] += exp(-(  ((I-X[t,i,0])**2+(J-X[t,i,1])**2)/(r[i]**2)  )**4    )
-            #A[t, :, :, 0] += 1.0 * (V[t,i,0] + .5) * exp(-(  ((I-X[t,i,0])**2+(J-X[t,i,1])**2)/(r[i]**2)  )**4    )
-            #A[t, :, :, 2] += 1.0 * (V[t,i,1] + .5) * exp(-(  ((I-X[t,i,0])**2+(J-X[t,i,1])**2)/(r[i]**2)  )**4    )
             A[t, :, :, 0] += exp(-(  ((I-X[t,i,0])**2+(J-X[t,i,1])**2)/(r[i]**2)  )**4    )
-            A[t, :, :, 2] += exp(-(  ((I-X[t,i,0])**2+(J-X[t,i,1])**2)/(r[i]**2)  )**4    )
             
         A[t,:,:,0][A[t,:,:,0]>1]=1
-        A[t,:,:,1][A[t,:,:,1]>1]=1
-        A[t,:,:,2][A[t,:,:,2]>1]=1
     return A
 
 def bounce_mat(res, n=2, T=128, r =None):
