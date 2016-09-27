@@ -2,6 +2,8 @@
 import numpy as np
 import tensorflow as tf
 
+FLAGS = tf.app.flags.FLAGS
+
 def loss(mean, stddev, x, x_prime):
     # epsilon 
     epsilon = 1e-8
@@ -21,4 +23,4 @@ def loss(mean, stddev, x, x_prime):
     # training
     train_op = tf.train.AdamOptimizer(FLAGS.lr).minimize(loss)
 
-    return kl_loss, loss_vae, loss, train_op
+    return loss_vae, loss_reconstruction, loss, train_op

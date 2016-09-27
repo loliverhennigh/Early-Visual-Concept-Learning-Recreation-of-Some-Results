@@ -10,7 +10,7 @@ import cv2
 import bouncing_balls as b
 import layer_def as ld
 import architecture as arc
-import loss as loss
+import loss as ls
 
 import matplotlib.pyplot as plt
 
@@ -56,12 +56,12 @@ def train():
     elif FLAGS.model=="conv":
       mean, stddev, y_sampled, x_prime = arc.conv_model(x, keep_prob)
     elif FLAGS.model=="all_conv":
-      mean, stddev, y_sampled, x_prime = arc.fully_connected_model(x, keep_prob)
+      mean, stddev, y_sampled, x_prime = arc.all_conv_model(x, keep_prob)
     else:
       print("model requested not found, now some error!")
 
     # calc loss stuff
-    kl_loss, loss_vae, loss, train_op = loss.loss(mean, stddev, x, x_prime)
+    loss_vae, loss_reconstruction, loss, train_op = ls.loss(mean, stddev, x, x_prime)
 
     # List of all Variables
     variables = tf.all_variables()
@@ -93,7 +93,7 @@ def train():
       elapsed = time.time() - t
 
       if step%2000 == 0:
-        _ , loss_vae_r, loss_reconstruction_r, y_sampled_r, x_prime_r, kl_loss_dis, stddev_r = sess.run([train_op, loss_vae, loss_reconstruction, y_sampled, x_prime, kl_loss, stddev],feed_dict={x:dat, keep_prob:FLAGS.keep_prob})
+        _ , loss_vae_r, loss_reconstruction_r, y_sampled_r, x_prime_r, stddev_r = sess.run([train_op, loss_vae, loss_reconstruction, y_sampled, x_prime, stddev],feed_dict={x:dat, keep_prob:FLAGS.keep_prob})
         summary_str = sess.run(summary_op, feed_dict={x:dat, keep_prob:FLAGS.keep_prob})
         summary_writer.add_summary(summary_str, step) 
         print("loss vae value at " + str(loss_vae_r))
@@ -101,7 +101,6 @@ def train():
         print("time per batch is " + str(elapsed))
         cv2.imwrite("real_balls.jpg", np.uint8(dat[0, :, :, :]*255))
         cv2.imwrite("generated_balls.jpg", np.uint8(x_prime_r[0, :, :, :]*255))
-        kl_loss_dis = np.sort(np.sum(kl_loss_dis, axis=0))
         stddev_r = np.sort(np.sum(stddev_r, axis=0))
         plt.plot(stddev_r/FLAGS.batch_size, label="step " + str(step))
         plt.legend()

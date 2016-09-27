@@ -37,7 +37,7 @@ def train():
   """Train ring_net for a number of steps."""
   with tf.Graph().as_default():
     # make inputs
-    x = tf.placeholder(tf.float32, [FLAGS.batch_size, 32, 32, 3])
+    x = tf.placeholder(tf.float32, [FLAGS.batch_size, 32, 32, 1])
 
     # possible dropout inside
     keep_prob = tf.placeholder("float")
@@ -65,7 +65,7 @@ def train():
     # conv13
     conv8 = ld.transpose_conv_layer(conv7, 3, 1, 8, "decode_7")
     # conv14
-    conv9 = ld.transpose_conv_layer(conv8, 3, 2, 3, "decode_8", True)
+    conv9 = ld.transpose_conv_layer(conv8, 3, 2, 1, "decode_8", True)
     # x_prime
     x_prime = conv9
     x_prime = tf.nn.sigmoid(x_prime)
