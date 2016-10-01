@@ -110,13 +110,13 @@ def main(argv=None):  # pylint: disable=unused-argument
   stddev_model_fully_connected_num_balls_2_beta_half = test_stddev("model_fully_connected_num_balls_2_beta_0.5")
   stddev_model_fully_connected_num_balls_2_beta_one = test_stddev("model_fully_connected_num_balls_2_beta_1.0")
 
-  stddev_model_all_conv_num_balls_1_beta_tenth = train("model_all_conv_num_balls_1_beta_0.1")
-  stddev_model_all_conv_num_balls_1_beta_half = train("model_all_conv_num_balls_1_beta_0.5")
-  stddev_model_all_conv_num_balls_1_beta_one = train("model_all_conv_num_balls_1_beta_1.0")
+  stddev_model_all_conv_num_balls_1_beta_tenth = test_stddev("model_all_conv_num_balls_1_beta_0.1")
+  stddev_model_all_conv_num_balls_1_beta_half = test_stddev("model_all_conv_num_balls_1_beta_0.5")
+  stddev_model_all_conv_num_balls_1_beta_one = test_stddev("model_all_conv_num_balls_1_beta_1.0")
 
-  stddev_model_all_conv_num_balls_2_beta_tenth = train("model_all_conv_num_balls_2_beta_0.1")
-  stddev_model_all_conv_num_balls_2_beta_half = train("model_all_conv_num_balls_2_beta_0.5")
-  stddev_model_all_conv_num_balls_2_beta_one = train("model_all_conv_num_balls_2_beta_1.0")
+  stddev_model_all_conv_num_balls_2_beta_tenth = test_stddev("model_all_conv_num_balls_2_beta_0.1")
+  stddev_model_all_conv_num_balls_2_beta_half = test_stddev("model_all_conv_num_balls_2_beta_0.5")
+  stddev_model_all_conv_num_balls_2_beta_one = test_stddev("model_all_conv_num_balls_2_beta_1.0")
 
   plt.figure(0)
   plt.plot(stddev_model_conv_num_balls_1_beta_tenth, label="beta 0.1")
@@ -127,7 +127,7 @@ def main(argv=None):  # pylint: disable=unused-argument
   plt.title("ordered standard deviation of latent encoding")
   plt.xlabel("latent variable number")
   plt.ylabel("average stddev")
-  plt.savefig("one_ball_stddev_conv.png")
+  plt.savefig("figures/one_ball_stddev_conv.png")
 
   plt.figure(1)
   plt.plot(stddev_model_conv_num_balls_2_beta_tenth, label="beta 0.1")
@@ -138,7 +138,7 @@ def main(argv=None):  # pylint: disable=unused-argument
   plt.title("ordered standard deviation of latent encoding")
   plt.xlabel("latent variable number")
   plt.ylabel("average stddev")
-  plt.savefig("two_ball_stddev_conv.png")
+  plt.savefig("figures/two_ball_stddev_conv.png")
 
   plt.figure(2)
   plt.plot(stddev_model_fully_connected_num_balls_1_beta_tenth, label="beta 0.1")
@@ -149,7 +149,7 @@ def main(argv=None):  # pylint: disable=unused-argument
   plt.title("ordered standard deviation of latent encoding")
   plt.xlabel("latent variable number")
   plt.ylabel("average stddev")
-  plt.savefig("one_ball_stddev_fully_connected.png")
+  plt.savefig("figures/one_ball_stddev_fully_connected.png")
 
   plt.figure(3)
   plt.plot(stddev_model_fully_connected_num_balls_2_beta_tenth, label="beta 0.1")
@@ -160,7 +160,7 @@ def main(argv=None):  # pylint: disable=unused-argument
   plt.title("ordered standard deviation of latent encoding")
   plt.xlabel("latent variable number")
   plt.ylabel("average stddev")
-  plt.savefig("two_ball_stddev_fully_connected.png")
+  plt.savefig("figures/two_ball_stddev_fully_connected.png")
 
   plt.figure(4)
   plt.plot(stddev_model_all_conv_num_balls_1_beta_tenth, label="beta 0.1")
@@ -171,7 +171,7 @@ def main(argv=None):  # pylint: disable=unused-argument
   plt.title("ordered standard deviation of latent encoding")
   plt.xlabel("latent variable number")
   plt.ylabel("average stddev")
-  plt.savefig("one_ball_stddev_all_conv.png")
+  plt.savefig("figures/one_ball_stddev_all_conv.png")
 
   plt.figure(5)
   plt.plot(stddev_model_all_conv_num_balls_2_beta_tenth, label="beta 0.1")
@@ -182,7 +182,7 @@ def main(argv=None):  # pylint: disable=unused-argument
   plt.title("ordered standard deviation of latent encoding")
   plt.xlabel("latent variable number")
   plt.ylabel("average stddev")
-  plt.savefig("two_ball_stddev_all_conv.png")
+  plt.savefig("figures/two_ball_stddev_all_conv.png")
 
 if __name__ == '__main__':
   tf.app.run()

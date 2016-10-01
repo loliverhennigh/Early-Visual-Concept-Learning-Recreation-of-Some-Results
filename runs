@@ -1,0 +1,32 @@
+
+
+python main.py --model=conv --num_balls=1 --beta=.1
+python main.py --model=conv --num_balls=1 --beta=.5
+python main.py --model=conv --num_balls=1 --beta=1.0
+
+python main.py --model=conv --num_balls=2 --beta=.1
+python main.py --model=conv --num_balls=2 --beta=.5
+python main.py --model=conv --num_balls=2 --beta=1.0
+
+python main.py --model=all_conv --num_balls=1 --beta=.1 --hidden_size=1
+python main.py --model=all_conv --num_balls=1 --beta=.5 --hidden_size=1
+python main.py --model=all_conv --num_balls=1 --beta=1.0 --hidden_size=1
+
+python main.py --model=all_conv --num_balls=2 --beta=.1 --hidden_size=1
+python main.py --model=all_conv --num_balls=2 --beta=.5 --hidden_size=1
+python main.py --model=all_conv --num_balls=2 --beta=1.0 --hidden_size=1
+
+python main.py --model=fully_connected --num_balls=1 --beta=.1 --hidden_size=10 --lr=.00005 --weight_init=.01
+python main.py --model=fully_connected --num_balls=1 --beta=.5 --hidden_size=10 --lr=.00005 --weight_init=.01
+python main.py --model=fully_connected --num_balls=1 --beta=1.0 --hidden_size=10 --lr=.00005 --weight_init=.01
+
+python main.py --model=fully_connected --num_balls=2 --beta=.1 --hidden_size=10 --lr=.00005 --weight_init=.01
+python main.py --model=fully_connected --num_balls=2 --beta=.5 --hidden_size=10 --lr=.00005 --weight_init=.01
+python main.py --model=fully_connected --num_balls=2 --beta=1.0 --hidden_size=10 --lr=.00005 --weight_init=.01
+
+
+
+
+
+
+

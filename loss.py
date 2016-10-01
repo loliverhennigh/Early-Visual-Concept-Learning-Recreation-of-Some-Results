@@ -6,7 +6,7 @@ FLAGS = tf.app.flags.FLAGS
 
 def loss(mean, stddev, x, x_prime):
     # epsilon 
-    epsilon = 1e-8
+    epsilon = 1e-10
     # calc loss from vae
     kl_loss = 0.5 * (tf.square(mean) + tf.square(stddev) -
                          2.0 * tf.log(stddev + epsilon) - 1.0)

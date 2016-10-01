@@ -105,10 +105,15 @@ def create_image(network_type):
         print(z_f[0])
         plt.subplot(10,5,j+5*i + 1)
         plt.pcolor(x_p, y_p, sess.run([x_prime],feed_dict={y_sampled:z_f})[0][0,:,:,0])
-        plt.axis('off')
+        if i == 9:
+          plt.xlabel(str(1.5*j - 3.0))
+        if j == 0:
+          plt.ylabel("{0:.2f}".format(stddev_r[index]))
+        plt.tick_params(axis='both', which='both', bottom='off', top='off', left='off', right='off', labelbottom='off', labelleft='off')
+        #plt.axis(frameon=False)
       # just make it big to get out of the way
       stddev_r[index] = 2.0
-    plt.show()
+    plt.savefig("figures/heat_map_" + network_type + ".png")
 
 def main(argv=None):  # pylint: disable=unused-argument
   create_image("model_conv_num_balls_1_beta_0.1")
